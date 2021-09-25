@@ -8,13 +8,33 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class InicioSesionPage implements OnInit {
 
+  nombreUsuario: string;
+
   constructor(private router:Router) { }
 
   goToMenu(){
-    this.router.navigate(['/menu'])
+    
+    
+    if(this.nombreUsuario == null){
+      let navigationExtras:NavigationExtras = {
+        queryParams:{
+            mensaje: '-----'
+        }
+      }
+      this.router.navigate(['/menu'],navigationExtras)
+      
+    }else{
+    let navigationExtras:NavigationExtras = {
+      queryParams:{
+          mensaje: this.nombreUsuario
+      }
+    }
+    this.router.navigate(['/menu'],navigationExtras)
+    }
 
   }
 
+  
  
 
   ngOnInit() {
